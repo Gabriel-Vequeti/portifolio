@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabriel Lopes Vequeti | Portfólio</title>
+  
+  <!-- Fontes do Google: Space Grotesk (600, 700) e Inter (400, 500) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Canvas para rastro sutil de partículas (referência Sandeep Kumar) -->
+  <canvas id="trail-canvas" aria-hidden="true"></canvas>
+
+  <!-- Cabeçalho fixo com navegação -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#hero" class="logo-link" aria-label="Início">
+        <span class="logo-text">GLV<span class="dot">.</span></span>
+      </a>
+
+      <div class="header-right">
+        <span class="status-badge" aria-label="Status atual">
+          <span class="status-indicator"></span> Disponível para novos projetos
+        </span>
+
+        <!-- Botão alternador de tema Claro / Escuro -->
+        <button id="theme-toggle" class="theme-btn" aria-label="Alternar modo claro e escuro" title="Alternar tema">
+          <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Botão hambúrguer acessível inspirado em CartoonEast -->
+        <button id="menu-toggle" class="menu-btn" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu de navegação">
+          <span class="menu-icon-box" aria-hidden="true">
+            <span class="menu-line line-1"></span>
+            <span class="menu-line line-2"></span>
+            <span class="menu-line line-3"></span>
+          </span>
+          <span class="menu-text">Menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Overlay / Menu de navegação -->
+  <nav id="main-nav" class="nav-overlay" aria-hidden="true">
+    <div class="nav-overlay-content">
+      <div class="nav-header">
+        <span class="nav-subtitle">Navegação</span>
+        <button id="menu-close" class="nav-close-btn" aria-label="Fechar menu">
+          <span class="close-icon">&times;</span>
+        </button>
+      </div>
+
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="#sobre" class="nav-link" data-number="01">
+            <span class="link-label">Sobre mim</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#projetos" class="nav-link" data-number="02">
+            <span class="link-label">Projetos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#contato" class="nav-link" data-number="03">
+            <span class="link-label">Contato</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-footer">
+        <p class="nav-footer-text">Gabriel Lopes Vequeti &bull; Portfólio</p>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Seção Inicial (Hero) -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-title">
+      <div class="hero-container">
+        <div class="hero-tagline">
+          <span class="role-badge">Técnico em Informática</span>
+          <span class="location-badge">Instituto Raphael Di Santo</span>
+        </div>
+
+        <h1 id="hero-title" class="hero-name">
+          Gabriel Lopes <span class="highlight-surname">Vequeti</span>
+        </h1>
+
+        <p class="hero-role-desc">
+          Estudante de Técnico em Informática integrado ao Ensino Médio &bull; Interessado em tecnologia e desenvolvimento de sistemas.
+        </p>
+
+        <p class="hero-statement">
+          “Aprendendo, criando e transformando ideias em projetos.”
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projetos" class="cta-button" id="btn-projects">
+            <span>Ver Projetos</span>
+            <svg class="cta-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Sobre Mim -->
+    <section id="sobre" class="content-section" aria-labelledby="sobre-title">
+      <div class="section-container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-index">01 / Biografia</span>
+          <h2 id="sobre-title" class="section-title">Sobre mim</h2>
+        </div>
+
+        <div class="about-grid">
+          <!-- Coluna visual com foto pessoal -->
+          <div class="about-visual reveal-on-scroll stagger-1">
+            <div class="photo-wrapper" role="figure" aria-labelledby="photo-caption">
+              <img
+                src="foto-gabriel.jpg"
+                alt="Gabriel Lopes Vequeti sorrindo, usando óculos escuros e camiseta azul marinho"
+                class="profile-photo"
+                loading="lazy"
+                decoding="async"
+              >
+              <p id="photo-caption" class="sr-only">Foto de Gabriel Lopes Vequeti</p>
+            </div>
+
+            <!-- Dados rápidos complementares -->
+            <div class="about-quick-info">
+              <div class="info-card">
+                <span class="info-label">Idade</span>
+                <span class="info-value">16 anos</span>
+              </div>
+              <div class="info-card">
+                <span class="info-label">Instituição</span>
+                <span class="info-value">Instituto Raphael Di Santo</span>
+              </div>
+              <div class="info-card">
+                <span class="info-label">Formação</span>
+                <span class="info-value">Técnico em Informática integrado ao Ensino Médio</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna textual e conhecimentos técnicos -->
+          <div class="about-content reveal-on-scroll stagger-2">
+            <div class="about-bio">
+              <p class="lead-bio">
+                Meu nome é <strong>Gabriel Lopes Vequeti</strong>, tenho 16 anos e estudo no Instituto Raphael Di Santo, onde faço Técnico em Informática integrado ao Ensino Médio.
+              </p>
+              <p>
+                Tenho conhecimentos em informática, programação, HTML e CSS, redes de computadores, Linux, atendimento ao cliente e metodologias ágeis. Também tenho interesse em tecnologia, desenvolvimento de sistemas e criação de projetos.
+              </p>
+              <p>
+                Busco sempre aprender coisas novas e desenvolver minhas habilidades para me preparar para o mercado de trabalho.
+              </p>
+            </div>
+
+            <!-- Conhecimentos em destaque -->
+            <div class="skills-block">
+              <h3 class="skills-heading">Conhecimentos &amp; Habilidades</h3>
+              <ul class="skills-list" aria-label="Lista de conhecimentos">
+                <li class="skill-tag">Programação</li>
+                <li class="skill-tag">HTML &amp; CSS</li>
+                <li class="skill-tag">Redes de Computadores</li>
+                <li class="skill-tag">Linux</li>
+                <li class="skill-tag">Metodologias Ágeis</li>
+                <li class="skill-tag">Atendimento ao Cliente</li>
+                <li class="skill-tag">Informática Geral</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Galeria de Projetos -->
+    <section id="projetos" class="content-section" aria-labelledby="projetos-title">
+      <div class="section-container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-index">02 / Portfólio</span>
+          <h2 id="projetos-title" class="section-title">Projetos em destaque</h2>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Projeto 1: Do Zero ao Milhão -->
+          <article class="project-card project-featured reveal-on-scroll stagger-1">
+            <div class="project-preview">
+              <div class="project-preview-mockup">
+                <div class="mockup-header">
+                  <span class="mockup-circle"></span>
+                  <span class="mockup-circle"></span>
+                  <span class="mockup-circle"></span>
+                  <span class="mockup-url">towards-the-million.vercel.app</span>
+                </div>
+                <div class="mockup-body mockup-body-image">
+                  <img src="towards-the-million.png" alt="Logotipo do jogo Do Zero ao Milhão (Towards The Million)" class="project-thumb-img">
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-status-tag status-published">Publicado</span>
+                <span class="project-type">Jogo 2D de plataforma</span>
+              </div>
+              <h3 class="project-title">Do Zero ao Milhão</h3>
+              <p class="project-desc">
+                Jogo 2D de plataforma interativo desenvolvido com foco em jogabilidade, desafios progressivos e mecânicas imersivas.
+              </p>
+              <div class="project-actions">
+                <a href="https://towards-the-million.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link-btn">
+                  <span>Acessar Projeto</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Projeto 2: Em desenvolvimento -->
+          <article class="project-card project-placeholder reveal-on-scroll stagger-2">
+            <div class="project-preview preview-wip">
+              <div class="wip-icon-box">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-status-tag status-wip">Em andamento</span>
+              </div>
+              <h3 class="project-title">Projeto em desenvolvimento</h3>
+              <p class="project-desc">
+                Em andamento. Nome, descrição e link serão adicionados quando definidos.
+              </p>
+            </div>
+          </article>
+
+          <!-- Projeto 3: Em desenvolvimento -->
+          <article class="project-card project-placeholder reveal-on-scroll stagger-3">
+            <div class="project-preview preview-wip">
+              <div class="wip-icon-box">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-status-tag status-wip">Em andamento</span>
+              </div>
+              <h3 class="project-title">Projeto em desenvolvimento</h3>
+              <p class="project-desc">
+                Em andamento. Nome, descrição e link serão adicionados quando definidos.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="contato" class="content-section" aria-labelledby="contato-title">
+      <div class="section-container">
+        <div class="section-header reveal-on-scroll">
+          <span class="section-index">03 / Conexão</span>
+          <h2 id="contato-title" class="section-title">Entre em contato</h2>
+          <p class="section-subtitle">
+            Vamos conversar sobre projetos, tecnologia ou oportunidades de colaboração.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Formulário com validação no cliente -->
+          <div class="contact-form-column reveal-on-scroll stagger-1">
+            <form id="contact-form" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="form-name" class="form-label">Seu nome <span class="required-mark">*</span></label>
+                <input type="text" id="form-name" name="name" class="form-input" placeholder="Ex: Maria Silva" required autocomplete="name">
+                <span class="form-error-msg" id="error-name" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="form-email" class="form-label">Seu e-mail <span class="required-mark">*</span></label>
+                <input type="email" id="form-email" name="email" class="form-input" placeholder="exemplo@dominio.com" required autocomplete="email">
+                <span class="form-error-msg" id="error-email" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="form-message" class="form-label">Sua mensagem <span class="required-mark">*</span></label>
+                <textarea id="form-message" name="message" rows="5" class="form-textarea" placeholder="Como posso ajudar você ou sobre qual projeto deseja conversar?" required></textarea>
+                <span class="form-error-msg" id="error-message" aria-live="polite"></span>
+              </div>
+
+              <!-- Aviso transparente sobre ausência de backend -->
+              <div class="form-notice">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span>Este formulário valida sua mensagem no navegador e abre seu cliente de e-mail pronto para o envio via <strong>mailto:</strong>, sem armazenar dados em servidor.</span>
+              </div>
+
+              <button type="submit" class="cta-button form-submit-btn">
+                <span>Preparar e Enviar E-mail</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+
+              <div id="form-status" class="form-status-alert" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <!-- Links diretos de contato (inspirado em Jingjing Han) -->
+          <div class="contact-links-column reveal-on-scroll stagger-2">
+            <h3 class="contact-links-heading">Canais Diretos</h3>
+            <p class="contact-links-text">
+              Prefere uma resposta mais rápida ou quer acompanhar meus trabalhos? Fique à vontade para me contatar através de qualquer um dos canais abaixo:
+            </p>
+
+            <ul class="direct-links-list">
+              <li>
+                <a href="https://wa.me/5519984424153" target="_blank" rel="noopener noreferrer" class="direct-link-card">
+                  <div class="direct-link-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                  </div>
+                  <div class="direct-link-info">
+                    <span class="direct-link-title">WhatsApp</span>
+                    <span class="direct-link-value">+55 19 98442-4153</span>
+                  </div>
+                  <span class="link-arrow">&rarr;</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="mailto:bielvequeti@gmail.com" class="direct-link-card">
+                  <div class="direct-link-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                  </div>
+                  <div class="direct-link-info">
+                    <span class="direct-link-title">E-mail</span>
+                    <span class="direct-link-value">bielvequeti@gmail.com</span>
+                  </div>
+                  <span class="link-arrow">&rarr;</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://github.com/Gabriel-Vequeti" target="_blank" rel="noopener noreferrer" class="direct-link-card">
+                  <div class="direct-link-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </div>
+                  <div class="direct-link-info">
+                    <span class="direct-link-title">GitHub</span>
+                    <span class="direct-link-value">github.com/Gabriel-Vequeti</span>
+                  </div>
+                  <span class="link-arrow">&rarr;</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.instagram.com/gabrielvequeti/" target="_blank" rel="noopener noreferrer" class="direct-link-card">
+                  <div class="direct-link-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                  </div>
+                  <div class="direct-link-info">
+                    <span class="direct-link-title">Instagram</span>
+                    <span class="direct-link-value">@gabrielvequeti</span>
+                  </div>
+                  <span class="link-arrow">&rarr;</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer simples e elegante (sem vídeo, Jingjing Han inspired) -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <p class="footer-copyright">
+          &copy; 2026 Gabriel Lopes Vequeti. Todos os direitos reservados.
+        </p>
+        <p class="footer-tagline">
+          Estudante de Técnico em Informática &bull; Instituto Raphael Di Santo
+        </p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
